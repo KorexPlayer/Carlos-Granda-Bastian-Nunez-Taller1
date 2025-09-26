@@ -31,18 +31,43 @@ class Empleado(
         """.trimMargin())
         val opcion = readln().toInt()
         when(opcion){
-            1->{print("Ingrese el nuevo rut: ")
+            1->{
+                print("Ingrese el nuevo rut: ")
                 val nuevorut =readln()
-                setRUT(nuevorut)}
-            2->{print("Ingrese el nuevo nombre: ")
-            val nuevonombre = readln()
-            setNombre(nuevonombre)}
-            3->{print("Ingrese la nueva direccion: ")
-            val nuevaciudad = readln()
-            val nuevacalle}
-
+                setRUT(nuevorut)
+            }
+            2->{
+                print("Ingrese el nuevo nombre: ")
+                val nuevonombre = readln()
+                setNombre(nuevonombre)
+            }
+            3->{
+                print("Ingrese la nueva calle: ")
+                val nuevacalle= readln()
+                print("Ingrese la nueva numero de casa: ")
+                val nuevanumero = readln().toInt()
+                print("Ingrese la nueva ciudad: ")
+                val nuevaciudad = readln()
+                print("Ingrese la nueva region: ")
+                val nuevaregion = readln()
+                setDireccion(nuevacalle, nuevanumero, nuevaciudad, nuevaregion)
+            }
+            4->{
+                print("Ingrese el nuevo sueldo base: ")
+                val nuevosueldobase = readln().toDouble()
+                setSueldoBase(nuevosueldobase)
+            }
+            5->{
+                println("Ingrese el nuevo afp")
+                print("Ingrese el nuevo nombre de afp: ")
+                val nuevonombre = readln()
+                print("Ingrese la nueva tasa de afp: ")
+                val nuevatasa = readln().toDouble()
+                setAfp(nuevonombre, nuevatasa)
+            }
         }
     }
+
     fun sueldoImponible(): Double {
         val sueldoimponible = getSueldoBase() + getbonosImpo()
         return sueldoimponible

@@ -1,6 +1,6 @@
 fun main() {
     var program = true
-    var repo = Repositorio()
+    val repo = Repositorio(listOf(AFP("Capital", 0.1154),AFP("Habitad", 0.1137),AFP("Modelo", 0.1068)), mutableListOf(), mutableListOf())
     while(program){
         println("""
             1.- Listar empleados
@@ -18,13 +18,13 @@ fun main() {
             2 -> {
                 repo.agregarEmpleados()
             }// Agregar empleados
-            3 -> {
-                println() // Generar liquidacion por RUT
-            }
+            3 -> { print("Ingrese el RUT del empleado: ")
+                val rut = readln()
+                repo.generarLiquidacion(rut)}// Generar liquidacion por RUT
 
             4 -> {
                 println() // Listar liquidaciones
-                repo.listar_liquidaciones()
+                repo.listarLiquidaciones()
             }
 
             5 -> {
@@ -33,6 +33,9 @@ fun main() {
             }
 
             6 -> {
+                print("RUT del empleado a eliminar: ")
+                val rut = readln()
+                repo.eliminarEmpleados(rut)
                 println() // Eliminar empleados
             }
 

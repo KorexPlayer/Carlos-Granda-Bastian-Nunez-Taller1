@@ -26,8 +26,8 @@ class LiquidacionSueldo(
         val descAfp = imponible * empleado.getAfp().getTasa()
         val descSalud = imponible * tasaSalud
         val descCesantia = imponible * tasaCesantia
-        val descuentos = descAfp + descSalud + descCesantia
-        val liquido = imponible - descuentos + noimponible
+        val totaldescuentos = descAfp + descSalud + descCesantia
+        val sueldoliquido = (imponible - totaldescuentos) + noimponible
 
         return LiquidacionSueldo(
             periodo,
@@ -37,16 +37,26 @@ class LiquidacionSueldo(
             descAfp,
             descSalud,
             descCesantia,
-            descuentos,
-            liquido,
+            totaldescuentos,
+            sueldoliquido,
         )
     }
     override fun toString(): String{
         return """Periodo de empleado: ${getPeriodo()} 
-            |Empleado: ${getEmpleado().toString()} 
+            |Nombre Empleado: ${getEmpleado().getNombre()}
+            |Rut: ${getEmpleado().getRUT()}
+            |Sueldo Base: ${getEmpleado().getSueldoBase()}
+            |Afp: ${getEmpleado().getAfp()}
+            |Sueldo Imponible: ${getImponible()}
+            |Sueldo no Imponible: ${getNoimponible()}
             |Descuento por Salud: ${getDescSalud()} 
             |Descuento por Cesantia: ${getDescCesantia()} 
+            |Descuento AFP: ${getDescAfp()}
             |Descuento Total: ${getTotalDescuentos()}
-            |Descuento AFP: ${getEmpleado().getAfp().getTasa()}""".trimMargin()
+            |Sueldo Liquido: ${getSueldoLiquido()}
+            """.trimMargin()
+
+
+            
     }
 }
